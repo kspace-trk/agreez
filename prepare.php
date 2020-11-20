@@ -53,7 +53,7 @@
         </div>
     </div>
     ---------テキスト入力用---------->
-    <!---------選択肢用---------->
+    <!---------選択肢用----------
     <div class="top-wrapper">
         <div class="container">
             <div class="question">発注側ですか？受注側ですか？</div>
@@ -67,6 +67,20 @@
             </div>
         </div>
     </div>
-    <!---------選択肢用---------->
+    ---------選択肢用---------->
+    <!---------日付選択用---------->
+        <div class="top-wrapper">
+        <div class="container">
+            <div class="question">あなたの会社名はなんですか？</div>
+            <div class="input-form">
+                <input type="date">
+            </div>
+            <div class="button-wrapper">
+                <button class="back">戻る</button>
+                <button class="next">次へ</button>
+            </div>
+        </div>
+    </div>
+    <!---------日付選択用--------->
 </body>
 </html>
