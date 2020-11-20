@@ -17,6 +17,17 @@
             <div class="header-contents-button">Login</div>
         </div>
     </div>
-    <div class="top-wrapper"></div>
+    <div class="top-wrapper">
+        <div class="container">
+            <div class="question">あなたの会社名はなんですか？</div>
+            <div class="input-form">
+                <input type="text">
+            </div>
+            <div class="button-wrapper">
+                <button class="back">戻る</button>
+                <button class="next">次へ</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
