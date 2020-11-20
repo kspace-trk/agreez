@@ -1,0 +1,33 @@
+.header {
+  width: 100%;
+  height: 75px;
+  background-color: #5e9cff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-l {
+  margin-left: 2rem;
+  font-size: 2rem;
+  color: #ffffff;
+}
+.header-r {
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+}
+.header-contents {
+  font-size: 1.2rem;
+  margin: 0 2rem;
+  color: #ffffff;
+}
+.header-contents-button {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #ffffff;
+  background-color: #4e86de;
+  border-radius: 30px;
+  padding: 0 2.2rem;
+}

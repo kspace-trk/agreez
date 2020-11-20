@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="prepare.css">
     <title>agreez</title>
 </head>
 <body>
-    <?php
-        if(!isset($_POST['my_company'])){
-            $form = <<<EOT
-                <form action="prepare.php" method="post">
-                    あなたの会社名<input type="text" name="my_company">
-                    <button>次へ</button>
-                </form>
-            EOT;
-            echo $form;
-        }
-    ?>
+    <div class="header">
+        <div class="header-l">agreez</div>
+        <div class="header-r">
+            <div class="header-contents">About</div>
+            <div class="header-contents">Contact</div>
+            <div class="header-contents">Signup</div>
+            <div class="header-contents-button">Login</div>
+        </div>
+    </div>
 </body>
 </html>
