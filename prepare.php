@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="prepare.css">
+    <link rel="stylesheet" href="common.css">
     <title>agreez</title>
 </head>
 <body>
@@ -77,7 +77,7 @@
             </div>
             <div class="button-wrapper">
                 <button class="back">戻る</button>
-                <button class="next">次へ</button>
+                <button class="next" onclick="location.href='establish.php'">次へ</button>
             </div>
         </div>
     </div>
