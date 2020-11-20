@@ -39,7 +39,7 @@
                 </div>
             </div>
           </div>
-    <!---------テキスト入力用----------
+    <!---------テキスト入力用---------->
     <div class="top-wrapper">
         <div class="container">
             <div class="question">あなたの会社名はなんですか？</div>
@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    ---------テキスト入力用---------->
+    <!---------テキスト入力用---------->
     <!---------選択肢用----------
     <div class="top-wrapper">
         <div class="container">
@@ -68,10 +68,10 @@
         </div>
     </div>
     ---------選択肢用---------->
-    <!---------日付選択用---------->
+    <!---------日付選択用----------
         <div class="top-wrapper">
         <div class="container">
-            <div class="question">あなたの会社名はなんですか？</div>
+            <div class="question">納期はいつですか？</div>
             <div class="input-form">
                 <input type="date">
             </div>
@@ -81,6 +81,6 @@
             </div>
         </div>
     </div>
-    <!---------日付選択用--------->
+    !---------日付選択用--------->
 </body>
 </html>
