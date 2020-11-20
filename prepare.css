@@ -31,3 +31,8 @@
   border-radius: 30px;
   padding: 0 2.2rem;
 }
+.top-wrapper {
+  width: 100%;
+  height: calc(100vh - 75px);
+  background-color: #dce5f2;
+}
