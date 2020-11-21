@@ -7,29 +7,34 @@
     }
     if(isset($_POST['my_company'])){
         $_SESSION['my_company'] = $_POST['my_company'];
-        $my_company = $_SESSION['my_company'];
     }
     if(isset($_POST['your_company'])){
         $_SESSION['your_company'] = $_POST['your_company'];
-        $your_company = $_SESSION['your_company'];
     }
     if(isset($_POST['is_receive'])){
         $_SESSION['is_receive'] = $_POST['is_receive'];
+        $_SESSION['receiver'] = $_SESSION['my_company'];
+      $_SESSION['order'] = $_SESSION['your_company'];
     }else if(!isset($_POST['is_receive'])){
         $_SESSION['is_receive'] = false;
+        $_SESSION['receiver'] = $_SESSION['your_company'];
+      $_SESSION['order'] = $_SESSION['my_company'];
     }
     if(isset($_POST['is_web'])){
         $_SESSION['is_web'] = $_POST['is_web'];
+        $_SESSION['work_name'] = $_SESSION['is_web'];
     }else if(!isset($_POST['is_web'])){
         $_SESSION['is_web'] = false;
     }
     if(isset($_POST['is_logo'])){
         $_SESSION['is_logo'] = $_POST['is_logo'];
+        $_SESSION['work_name'] = $_SESSION['is_logo'];
     }else if(!isset($_POST['is_logo'])){
         $_SESSION['is_logo'] = false;
     }
     if(isset($_POST['is_img'])){
         $_SESSION['is_img'] = $_POST['is_img'];
+        $_SESSION['work_name'] = $_SESSION['is_img'];
     }else if(!isset($_POST['is_img'])){
         $_SESSION['is_img'] = false;
     }
@@ -92,9 +97,9 @@ EOT;
             <div class="question"> $type 内容はなんですか？</div>
             <div class="select-form">
                 <input type="hidden" type="submit" name="index" value="5">
-                <button type="submit" name="is_web" value="True">Web制作</button>
-                <button type="submit" name="is_logo" value="True">ロゴ制作</button>
-                <button type="submit" name="is_img" value="True">画像制作</button>
+                <button type="submit" name="is_web" value="Webサイト制作">Web制作</button>
+                <button type="submit" name="is_logo" value="ロゴ画像制作">ロゴ制作</button>
+                <button type="submit" name="is_img" value="イラスト・画像制作">画像制作</button>
             </div>
             <div class="button-wrapper">
                 <button class="back" type="submit" name="index" value="3">戻る</button>
@@ -162,6 +167,10 @@ EOT;
         }
         else if($index == 6){
             due_date();
+        }
+        else if($index == 7){
+            header('Location: establish.php');
+            exit;
         }
     }
 ?>
