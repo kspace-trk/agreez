@@ -120,6 +120,23 @@ EOT;
     </div>
 EOT;
     }
+    //金額入力画面
+    function due_date(){
+        echo <<<EOT
+        <div class="top-wrapper">
+        <form class="container" action="prepare.php" method="post">
+            <div class="question">納期はいつですか？</div>
+            <div class="input-form">
+                <input type="date" name="due_date" required>
+            </div>
+            <div class="button-wrapper">
+                <button class="back"  type="submit" name="index" value="5">戻る</button>
+                <button class="next" type="submit" name="index" value="7">次へ</button>
+            </div>
+        </form>
+    </div>
+EOT;
+    }
     //コンテンツ出力
     function echo_contents($index){
         if($index == 1){
@@ -142,6 +159,9 @@ EOT;
         }
         else if($index == 5 and !$_SESSION['is_receive']){//発注の場合
             money("発注");
+        }
+        else if($index == 6){
+            due_date();
         }
     }
 ?>
