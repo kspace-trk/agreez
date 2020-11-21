@@ -82,6 +82,10 @@ h1 {
 .input-form {
   max-width: 600px;
   width: 90%;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #909090;
   margin-bottom: 60px;
 }
 .input-form input {
@@ -92,6 +96,8 @@ h1 {
   filter: drop-shadow(0 1px 2px #40404034);
   padding: 0 1rem;
   font-size: 1.2rem;
+  margin-right: 1rem;
+  text-align: center;
 }
 .input-form input:focus {
   border: 2px solid #5e9cff;

@@ -15,6 +15,23 @@
     }
     if(isset($_POST['is_receive'])){
         $_SESSION['is_receive'] = $_POST['is_receive'];
+    }else if(!isset($_POST['is_receive'])){
+        $_SESSION['is_receive'] = false;
+    }
+    if(isset($_POST['is_web'])){
+        $_SESSION['is_web'] = $_POST['is_web'];
+    }else if(!isset($_POST['is_web'])){
+        $_SESSION['is_web'] = false;
+    }
+    if(isset($_POST['is_logo'])){
+        $_SESSION['is_logo'] = $_POST['is_logo'];
+    }else if(!isset($_POST['is_logo'])){
+        $_SESSION['is_logo'] = false;
+    }
+    if(isset($_POST['is_img'])){
+        $_SESSION['is_img'] = $_POST['is_img'];
+    }else if(!isset($_POST['is_img'])){
+        $_SESSION['is_img'] = false;
     }
     //自社名入力画面
     function my_company(){
@@ -42,6 +59,7 @@ EOT;
                 <input type="text" name="your_company" required>
             </div>
             <div class="button-wrapper">
+            <button class="back" type="submit" name="index" value="1">戻る</button>
                 <button class="next" type="submit" name="index" value="3">次へ</button>
             </div>
         </form>
@@ -60,7 +78,7 @@ EOT;
                 <button type="submit" name="is_receive" value="True">受注側</button>
             </div>
             <div class="button-wrapper">
-                <button class="back" type="submit" name="index" value="3">戻る</button>
+                <button class="back" type="submit" name="index" value="2">戻る</button>
             </div>
         </form>
     </div>
@@ -73,7 +91,7 @@ EOT;
         <form class="container" action="prepare.php" method="post">
             <div class="question"> $type 内容はなんですか？</div>
             <div class="select-form">
-                <input type="hidden" type="submit" name="index" value="4">
+                <input type="hidden" type="submit" name="index" value="5">
                 <button type="submit" name="is_web" value="True">Web制作</button>
                 <button type="submit" name="is_logo" value="True">ロゴ制作</button>
                 <button type="submit" name="is_img" value="True">画像制作</button>
@@ -85,22 +103,45 @@ EOT;
     </div>
 EOT;
     }
+    //金額入力画面
+    function money($type){
+        echo <<<EOT
+        <div class="top-wrapper">
+        <form class="container" action="prepare.php" method="post">
+            <div class="question"> $type 金額はいくらですか？</div>
+            <div class="input-form">
+                <input type="text" name="money" required>円
+            </div>
+            <div class="button-wrapper">
+            <button class="back" type="submit" name="index" value="4">戻る</button>
+                <button class="next" type="submit" name="index" value="6">次へ</button>
+            </div>
+        </form>
+    </div>
+EOT;
+    }
     //コンテンツ出力
     function echo_contents($index){
         if($index == 1){
-            echo my_company();
+            my_company();
         }
         else if($index == 2){
-            echo your_company();
+            your_company();
         }
         else if($index == 3){
-            echo is_receive();
+            is_receive();
         }
-        else if($index == 4 and isset($_POST['is_receive'])){//受託の場合
+        else if($index == 4 and $_SESSION['is_receive']){//受託の場合
             content("受注");
         }
-        else if($index == 4 and !isset($_POST['is_receive'])){//発注の場合
+        else if($index == 4 and !$_SESSION['is_receive']){//発注の場合
             content("発注");
+        }
+        else if($index == 5 and $_SESSION['is_receive']){//受託の場合
+            money("受注");
+        }
+        else if($index == 5 and !$_SESSION['is_receive']){//発注の場合
+            money("発注");
         }
     }
 ?>
