@@ -20,22 +20,22 @@
         $_SESSION['order'] = $_SESSION['my_company'];
         $_SESSION['receiver'] = $_SESSION['your_company'];
     }
-    if(isset($_POST['is_web'])){
+    if(isset($_POST['is_web']) and $index == 5){
         $_SESSION['is_web'] = $_POST['is_web'];
         $_SESSION['work_name'] = $_SESSION['is_web'];
-    }else if(!isset($_POST['is_web'])){
+    }else if(!isset($_POST['is_web']) and $index == 5){
         $_SESSION['is_web'] = false;
     }
-    if(isset($_POST['is_logo'])){
+    if(isset($_POST['is_logo']) and $index == 5){
         $_SESSION['is_logo'] = $_POST['is_logo'];
         $_SESSION['work_name'] = $_SESSION['is_logo'];
-    }else if(!isset($_POST['is_logo'])){
+    }else if(!isset($_POST['is_logo']) and $index == 5){
         $_SESSION['is_logo'] = false;
     }
-    if(isset($_POST['is_img'])){
+    if(isset($_POST['is_img']) and $index == 5){
         $_SESSION['is_img'] = $_POST['is_img'];
         $_SESSION['work_name'] = $_SESSION['is_img'];
-    }else if(!isset($_POST['is_img'])){
+    }else if(!isset($_POST['is_img']) and $index == 5){
         $_SESSION['is_img'] = false;
     }
     if(isset($_POST['money'])){
