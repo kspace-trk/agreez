@@ -38,6 +38,9 @@
     }else if(!isset($_POST['is_img'])){
         $_SESSION['is_img'] = false;
     }
+    if(isset($_POST['money'])){
+        $_SESSION['money'] = $_POST['money'];
+    }
     if(isset($_POST['delivery_date'])){
         $_SESSION['delivery_date'] = $_POST['delivery_date'];
     }

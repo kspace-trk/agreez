@@ -39,7 +39,7 @@
                 <div class="nav">
                   <div class="nav-wrapper">
                     <nav>
-                      <a href="#">agreez</a>
+                      <a href="index.php">agreez</a>
                       <a href="#">About</a>
                       <a href="#">Contact</a>
                       <a href="#">Signup</a>

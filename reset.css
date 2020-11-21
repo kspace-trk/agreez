@@ -78,6 +78,7 @@ video {
   background: transparent;
   font-family: "Noto Sans JP";
   color: #17171b;
+  line-height: 2;
 }
 button {
   margin: 0;
@@ -88,10 +89,6 @@ button {
   vertical-align: baseline;
   background: transparent;
   font-family: "Noto Sans JP";
-}
-
-body {
-  line-height: 2;
 }
 
 article,
