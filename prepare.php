@@ -1,15 +1,24 @@
 <?php
+    session_start();
     if(isset($_POST['index'])){
         $index = $_POST['index'];
-        $my_company = $_POST['my_company'];
-        echo $my_company;
-        echo $index;
     }else{
         $index = 1;
     }
+    if(isset($_POST['my_company'])){
+        $_SESSION['my_company'] = $_POST['my_company'];
+        $my_company = $_SESSION['my_company'];
+    }
+    if(isset($_POST['your_company'])){
+        $_SESSION['your_company'] = $_POST['your_company'];
+        $your_company = $_SESSION['your_company'];
+    }
+    if(isset($_POST['is_receive'])){
+        $_SESSION['is_receive'] = $_POST['is_receive'];
+    }
     //自社名入力画面
     function my_company(){
-        echo <<<'EOD'
+        echo <<<EOT
         <div class="top-wrapper">
         <form class="container" action="prepare.php" method="post">
             <div class="question">あなたの会社名はなんですか？</div>
@@ -17,16 +26,81 @@
                 <input type="text" name="my_company" required>
             </div>
             <div class="button-wrapper">
-                <button class="next" type="submit" name="index" value="1">次へ</button>
+                <button class="next" type="submit" name="index" value="2">次へ</button>
             </div>
         </form>
     </div>
-EOD;
+EOT;
+    }
+    //相手の会社名入力画面
+    function your_company(){
+        echo <<<EOT
+        <div class="top-wrapper">
+        <form class="container" action="prepare.php" method="post">
+            <div class="question">相手の会社名はなんですか？</div>
+            <div class="input-form">
+                <input type="text" name="your_company" required>
+            </div>
+            <div class="button-wrapper">
+                <button class="next" type="submit" name="index" value="3">次へ</button>
+            </div>
+        </form>
+    </div>
+EOT;
+    }
+    //発注or受注選択画面
+    function is_receive(){
+        echo <<<EOT
+        <div class="top-wrapper">
+        <form class="container" action="prepare.php" method="post">
+            <div class="question">発注側ですか？受注側ですか？</div>
+            <div class="select-form">
+                <input type="hidden" name="index" value="4">
+                <button type="submit">発注側</button>
+                <button type="submit" name="is_receive" value="True">受注側</button>
+            </div>
+            <div class="button-wrapper">
+                <button class="back" type="submit" name="index" value="3">戻る</button>
+            </div>
+        </form>
+    </div>
+EOT;
+    }
+    //業務内容入力画面
+    function content($type){
+        echo <<<EOT
+        <div class="top-wrapper">
+        <form class="container" action="prepare.php" method="post">
+            <div class="question"> $type 内容はなんですか？</div>
+            <div class="select-form">
+                <input type="hidden" type="submit" name="index" value="4">
+                <button type="submit" name="is_web" value="True">Web制作</button>
+                <button type="submit" name="is_logo" value="True">ロゴ制作</button>
+                <button type="submit" name="is_img" value="True">画像制作</button>
+            </div>
+            <div class="button-wrapper">
+                <button class="back" type="submit" name="index" value="3">戻る</button>
+            </div>
+        </form>
+    </div>
+EOT;
     }
     //コンテンツ出力
     function echo_contents($index){
-        if($index === 1){
+        if($index == 1){
             echo my_company();
+        }
+        else if($index == 2){
+            echo your_company();
+        }
+        else if($index == 3){
+            echo is_receive();
+        }
+        else if($index == 4 and isset($_POST['is_receive'])){//受託の場合
+            content("受注");
+        }
+        else if($index == 4 and !isset($_POST['is_receive'])){//発注の場合
+            content("発注");
         }
     }
 ?>
