@@ -1,3 +1,36 @@
+<?php
+    if(isset($_POST['index'])){
+        $index = $_POST['index'];
+        $my_company = $_POST['my_company'];
+        echo $my_company;
+        echo $index;
+    }else{
+        $index = 1;
+    }
+    //自社名入力画面
+    function my_company(){
+        echo <<<'EOD'
+        <div class="top-wrapper">
+        <form class="container" action="prepare.php" method="post">
+            <div class="question">あなたの会社名はなんですか？</div>
+            <div class="input-form">
+                <input type="text" name="my_company" required>
+                <input type="hidden" name="index" value="1">
+            </div>
+            <div class="button-wrapper">
+                <input class="next" type="submit" value="次へ"></input>
+            </div>
+        </form>
+    </div>
+EOD;
+    }
+    //コンテンツ出力
+    function echo_contents($index){
+        if($index === 1){
+            echo my_company();
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -39,7 +72,10 @@
                 </div>
             </div>
           </div>
-    <!---------テキスト入力用---------->
+    <?php
+       echo_contents($index);
+    ?>
+    <!---------テキスト入力用----------
     <div class="top-wrapper">
         <div class="container">
             <div class="question">あなたの会社名はなんですか？</div>
@@ -48,11 +84,11 @@
             </div>
             <div class="button-wrapper">
                 <button class="back">戻る</button>
-                <button class="next">次へ</button>
+                <button class="next" onclick="location.href='establish.php'">次へ</button>
             </div>
         </div>
     </div>
-    <!---------テキスト入力用---------->
+    ---------テキスト入力用---------->
     <!---------選択肢用----------
     <div class="top-wrapper">
         <div class="container">
