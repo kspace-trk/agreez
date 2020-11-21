@@ -3,6 +3,8 @@
     $order = $_SESSION["order"];
     $receiver = $_SESSION["receiver"];
     $work_name = $_SESSION['work_name'];
+    $delivery_date = new DateTime($_SESSION['delivery_date']);
+    $delivery_date = $delivery_date->format('Y年m月d日');
     if(isset($_SESSION['is_web'])){
       $work_def = "甲により提示された仕様に従い、甲から提供されるテキスト原稿、画像等のスクリプトデータと、乙の提供するレイアウトデータおよび画像データ、スクリプト等と組み合わせることを「Webサイト制作」という。";
     }else if(isset($_SESSION['is_logo'])){
@@ -28,6 +30,21 @@
       echo "第２条 定義";
       echo "<br>";
       echo $work_def;
+    }
+    //第３条 制作期間
+    function delivery_date($delivery_date){
+      echo "第３条 制作期間";
+      echo "<br>";
+      echo "1. 乙は、本件業務を $delivery_date までに完成し、本件成果物を甲に提出する。";
+      echo "<br>";
+      echo "2. 乙は前項に定める期日までに本件業務を完成することができないおそれが生じたときは、ただちにその旨を甲に通知し、甲の指示に従う。";
+      echo "<br>";
+      echo "3. 本契約の締結後、甲からの指示により委託内容に変更があり、その変更により納期を遵守できないおそれが生じた場合は、第1項の完成期日は無効とし、甲乙で協議し、改めて完成期日を定める。";
+    }
+    //第４条 納品
+    function delivery(){
+      echo "第４条 納品";
+      echo "<br>";
     }
     
     ////////////////////ここまで契約書文章
@@ -86,6 +103,9 @@
               echo "</div>";
               echo '<div class="text-span">';
                 work_def($work_def);
+              echo "</div>";
+              echo '<div class="text-span">';
+                delivery_date($delivery_date);
               echo "</div>";
               ?>
             </div>

@@ -38,6 +38,9 @@
     }else if(!isset($_POST['is_img'])){
         $_SESSION['is_img'] = false;
     }
+    if(isset($_POST['delivery_date'])){
+        $_SESSION['delivery_date'] = $_POST['delivery_date'];
+    }
     //自社名入力画面
     function my_company(){
         echo <<<EOT
@@ -126,13 +129,13 @@ EOT;
 EOT;
     }
     //金額入力画面
-    function due_date(){
+    function delivery_date(){
         echo <<<EOT
         <div class="top-wrapper">
         <form class="container" action="prepare.php" method="post">
             <div class="question">納期はいつですか？</div>
             <div class="input-form">
-                <input type="date" name="due_date" required>
+                <input type="date" name="delivery_date" required>
             </div>
             <div class="button-wrapper">
             <button class="next" type="submit" name="index" value="7">次へ</button>
@@ -166,7 +169,7 @@ EOT;
             money("発注");
         }
         else if($index == 6){
-            due_date();
+            delivery_date();
         }
         else if($index == 7){
             header('Location: establish.php');
