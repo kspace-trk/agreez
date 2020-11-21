@@ -168,7 +168,7 @@ ol {
   border-radius: 30px;
   background-color: #5e9cff;
   color: #ffffff;
-  margin: 60px 50px 0;
+  margin: 60px 50px;
   cursor: pointer;
 }
 @media screen and (max-width: 920px) {
