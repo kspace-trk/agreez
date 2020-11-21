@@ -3,10 +3,34 @@
     $order = $_SESSION["order"];
     $receiver = $_SESSION["receiver"];
     $work_name = $_SESSION['work_name'];
+    if(isset($_SESSION['is_web'])){
+      $work_def = "甲により提示された仕様に従い、甲から提供されるテキスト原稿、画像等のスクリプトデータと、乙の提供するレイアウトデータおよび画像データ、スクリプト等と組み合わせることを「Webサイト制作」という。";
+    }else if(isset($_SESSION['is_logo'])){
+      $work_def = "甲により提示された仕様に従い、甲から提供されるイメージ画像を元に制作したロゴ画像の制作を「ロゴ画像制作」という。";
+    }else if(isset($_SESSION['is_img'])){
+      $work_def = "甲により提示された仕様に従い、甲から提供されるイメージ画像を元に制作したイラスト画像の制作を「イラスト画像制作」という。";
+    }
+    //////////////////////ここから契約書文章
     //前文
     function preamble($order, $receiver, $work_name){
-      echo "【 $order 】(以下「甲」という。)と $receiver (以下「乙」とい う。)とは、甲が乙に対して、甲の $work_name の業務を委託することについて、次の通り契約を締結する(以下「本契約」という)。";
+      echo "【 $order 】(以下「甲」という。)と $receiver (以下「乙」という。)とは、甲が乙に対して、甲の $work_name の業務を委託することについて、次の通り契約を締結する(以下「本契約」という)。";
     }
+    //第１条 目的
+    function goal($work_name){
+      echo "第１条 目的";
+      echo "<br>";
+      echo "1. 甲は、別紙記載の $work_name (以下「本業務」という)を乙に委託し、乙はこれを受託する。";
+      echo "<br>";
+      echo "2. 甲は、乙が本業務を遂行するに際して、必要な協力を行う。";
+    }
+    //第２条 定義
+    function work_def($work_def){
+      echo "第２条 定義";
+      echo "<br>";
+      echo $work_def;
+    }
+    
+    ////////////////////ここまで契約書文章
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -54,7 +78,15 @@
             <div class="result-text">
               <h1>業務委託契約書</h1>
               <?php
+              echo '<div class="text-span">';
                 preamble($order, $receiver, $work_name);
+              echo "</div>";
+              echo '<div class="text-span">';
+                goal($work_name);
+              echo "</div>";
+              echo '<div class="text-span">';
+                work_def($work_def);
+              echo "</div>";
               ?>
             </div>
         </div>

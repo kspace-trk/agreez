@@ -79,6 +79,9 @@ h1 {
   width: 90%;
   margin-bottom: 50px;
 }
+.text-span {
+  margin: 1rem 0;
+}
 .input-form {
   max-width: 600px;
   width: 90%;

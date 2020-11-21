@@ -64,8 +64,8 @@ EOT;
                 <input type="text" name="your_company" required>
             </div>
             <div class="button-wrapper">
+            <button class="next" type="submit" name="index" value="3">次へ</button>
             <button class="back" type="submit" name="index" value="1">戻る</button>
-                <button class="next" type="submit" name="index" value="3">次へ</button>
             </div>
         </form>
     </div>
@@ -98,8 +98,8 @@ EOT;
             <div class="select-form">
                 <input type="hidden" type="submit" name="index" value="5">
                 <button type="submit" name="is_web" value="Webサイト制作">Web制作</button>
-                <button type="submit" name="is_logo" value="ロゴ画像制作">ロゴ制作</button>
-                <button type="submit" name="is_img" value="イラスト・画像制作">画像制作</button>
+                <button type="submit" name="is_logo" value="ロゴ画像制作">ロゴ画像制作</button>
+                <button type="submit" name="is_img" value="イラスト画像制作">画像制作</button>
             </div>
             <div class="button-wrapper">
                 <button class="back" type="submit" name="index" value="3">戻る</button>
@@ -118,8 +118,8 @@ EOT;
                 <input type="text" name="money" required>円
             </div>
             <div class="button-wrapper">
+            <button class="next" type="submit" name="index" value="6">次へ</button>
             <button class="back" type="submit" name="index" value="4">戻る</button>
-                <button class="next" type="submit" name="index" value="6">次へ</button>
             </div>
         </form>
     </div>
@@ -135,8 +135,8 @@ EOT;
                 <input type="date" name="due_date" required>
             </div>
             <div class="button-wrapper">
+            <button class="next" type="submit" name="index" value="7">次へ</button>
                 <button class="back"  type="submit" name="index" value="5">戻る</button>
-                <button class="next" type="submit" name="index" value="7">次へ</button>
             </div>
         </form>
     </div>
