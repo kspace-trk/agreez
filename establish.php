@@ -1,16 +1,16 @@
 <?php
     session_start();
-    $order = $_SESSION["order"];
-    $receiver = $_SESSION["receiver"];
+    $order = $_SESSION['order'];
+    $receiver = $_SESSION['receiver'];
     $work_name = $_SESSION['work_name'];
     $money = $_SESSION['money'];
     $delivery_date = new DateTime($_SESSION['delivery_date']);
     $delivery_date = $delivery_date->format('Y年m月d日');
-    if(isset($_SESSION['is_web'])){
+    if($_SESSION['is_web']){
       $work_def = "甲により提示された仕様に従い、甲から提供されるテキスト原稿、画像等のスクリプトデータと、乙の提供するレイアウトデータおよび画像データ、スクリプト等と組み合わせることを「Webサイト制作」という。";
-    }else if(isset($_SESSION['is_logo'])){
+    }else if($_SESSION['is_logo']){
       $work_def = "甲により提示された仕様に従い、甲から提供されるイメージ画像を元に制作したロゴ画像の制作を「ロゴ画像制作」という。";
-    }else if(isset($_SESSION['is_img'])){
+    }else if($_SESSION['is_img']){
       $work_def = "甲により提示された仕様に従い、甲から提供されるイメージ画像を元に制作したイラスト画像の制作を「イラスト画像制作」という。";
     }
     //////////////////////ここから契約書文章
@@ -81,7 +81,7 @@
       echo "<li>破産、会社法人の特別清算、民事再生又は会社更生の手続き開始の申し立てがあったとき。</li>";
       echo "<li>公租公課の滞納処分を受けたとき。</li>";
       echo "<li>解散、合併、又は事業の全部若しくは重要な一部の譲渡の決議をしたとき。</li>";
-      echo "<li><財産状態が悪化し、又はそのおそれがあると認めることができる相当の事由があるとき。/li>";
+      echo "<li><財産状態が悪化し、又はそのおそれがあると認めることができる相当の事由があるとき。</li>";
       echo "<li>その他前各号の準ずる事由があるとき。</li>";
       echo "</ol>";
       echo "<li>甲又は乙は、相当の対価を払うことにより、本契約を解除することができる。</li>";

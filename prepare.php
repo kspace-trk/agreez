@@ -11,14 +11,14 @@
     if(isset($_POST['your_company'])){
         $_SESSION['your_company'] = $_POST['your_company'];
     }
-    if(isset($_POST['is_receive'])){
+    if(isset($_POST['is_receive']) and $index == 4){
         $_SESSION['is_receive'] = $_POST['is_receive'];
         $_SESSION['receiver'] = $_SESSION['my_company'];
-      $_SESSION['order'] = $_SESSION['your_company'];
-    }else if(!isset($_POST['is_receive'])){
+        $_SESSION['order'] = $_SESSION['your_company'];
+    }else if(!isset($_POST['is_receive']) and $index == 4){
         $_SESSION['is_receive'] = false;
+        $_SESSION['order'] = $_SESSION['my_company'];
         $_SESSION['receiver'] = $_SESSION['your_company'];
-      $_SESSION['order'] = $_SESSION['my_company'];
     }
     if(isset($_POST['is_web'])){
         $_SESSION['is_web'] = $_POST['is_web'];
@@ -131,7 +131,7 @@ EOT;
     </div>
 EOT;
     }
-    //金額入力画面
+    //納期入力画面
     function delivery_date(){
         echo <<<EOT
         <div class="top-wrapper">
