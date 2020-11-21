@@ -15,10 +15,9 @@
             <div class="question">あなたの会社名はなんですか？</div>
             <div class="input-form">
                 <input type="text" name="my_company" required>
-                <input type="hidden" name="index" value="1">
             </div>
             <div class="button-wrapper">
-                <input class="next" type="submit" value="次へ"></input>
+                <button class="next" type="submit" name="index" value="1">次へ</button>
             </div>
         </form>
     </div>
