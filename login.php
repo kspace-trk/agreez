@@ -16,8 +16,6 @@ $link = mysqli_connect($hostname, $username, $password);
 if (isset($_POST['mail']) and isset($_POST['passwd'])) {
     $mail = $_POST['mail'];
     $passwd = $_POST['passwd'];
-    $_SESSION['mail'] = $mail;
-    $_SESSION['passwd'] = $passwd;
     $result = mysqli_query($link, "SELECT * FROM $user_table WHERE user_mail = '$mail'");
 
     if (!$result) {
@@ -31,7 +29,8 @@ if (isset($_POST['mail']) and isset($_POST['passwd'])) {
     if ($user_info[3] !== $passwd) {
         exit("パスワードが違います");
     } else {
-        $_SESSION['name'] = $user_info[2];
+        $_SESSION['user_id'] = $user_info[0];
+        $_SESSION['name'] = $user_info[1];
         header('Location: mypage.php');
     }
 }

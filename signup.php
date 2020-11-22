@@ -18,14 +18,23 @@ if (isset($_POST['mail']) and isset($_POST['passwd']) and isset($_POST['name']))
     $mail = $_POST['mail'];
     $passwd = $_POST['passwd'];
     $name = $_POST['name'];
-    $_SESSION['mail'] = $mail;
-    $_SESSION['passwd'] = $passwd;
     $_SESSION['name'] = $name;
-
     $result = mysqli_query($link, "INSERT INTO $user_table SET user_name='$name', user_mail='$mail', user_password='$passwd'");
     if (!$result) {
         exit("INSERT error!(メアドもうあるかも)");
     }
+    $result = mysqli_query($link, "SELECT * FROM $user_table WHERE user_mail = '$mail'");
+
+    if (!$result) {
+        echo "Select error on table ($user_table)!";
+    }
+    while ($row = mysqli_fetch_row($result)) {
+        foreach ($row as $key => $value) {
+            $user_info[$key] = $value;
+        }
+    }
+    $_SESSION['user_id'] = $user_info[0];
+
     header('Location: mypage.php');
 }
 ?>
