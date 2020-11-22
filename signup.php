@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 //データベース追加処理
 $hostname = '127.0.0.1';
 $username = 'root';
@@ -16,11 +18,15 @@ if (isset($_POST['mail']) and isset($_POST['passwd']) and isset($_POST['name']))
     $mail = $_POST['mail'];
     $passwd = $_POST['passwd'];
     $name = $_POST['name'];
+    $_SESSION['mail'] = $mail;
+    $_SESSION['passwd'] = $passwd;
+    $_SESSION['name'] = $name;
+
     $result = mysqli_query($link, "INSERT INTO $user_table SET user_name='$name', user_mail='$mail', user_password='$passwd'");
     if (!$result) {
         exit("INSERT error!(メアドもうあるかも)");
     }
-    header('Location: index.php');
+    header('Location: mypage.php');
 }
 ?>
 <!DOCTYPE html>

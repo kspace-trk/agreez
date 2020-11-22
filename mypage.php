@@ -1,8 +1,9 @@
 <?php
-if (isset($_POST['mail']) and isset($_POST['passwd']) and isset($_POST['name'])) {
-    $mail = $_POST['mail'];
-    $passwd = $_POST['passwd'];
-    $name = $_POST['name'];
+session_start();
+if (isset($_SESSION['mail']) and isset($_SESSION['passwd']) and isset($_SESSION['name'])) {
+    $mail = $_SESSION['mail'];
+    $passwd = $_SESSION['passwd'];
+    $name = $_SESSION['name'];
 }
 
 ?>
@@ -57,7 +58,7 @@ if (isset($_POST['mail']) and isset($_POST['passwd']) and isset($_POST['name']))
         <div class="container">
             <div class="name">ようこそ</div>
             <?php
-            echo $user_name;
+            echo "$name";
             echo "さん";
             ?>
         </div>

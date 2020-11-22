@@ -52,7 +52,7 @@
       <div class="header-l">agreez</div>
       <div class="header-r">
         <div class="header-contents">
-          about
+          About
         </div>
         <div class="header-contents">
           Contact
