@@ -8,6 +8,34 @@ $dbname = 'agreez';
 $user_table = 'users';
 $agreements_table = 'agreements';
 $link = mysqli_connect($hostname, $username, $password);
+    if (!$link) {
+        exit("Connect error!");
+    }
+    $result = mysqli_query($link, "USE $dbname");
+
+if (isset($_POST['mail']) and isset($_POST['passwd'])) {
+    $mail = $_POST['mail'];
+    $passwd = $_POST['passwd'];
+    $_SESSION['mail'] = $mail;
+    $_SESSION['passwd'] = $passwd;
+    $result = mysqli_query($link, "SELECT * FROM $user_table WHERE user_mail = '$mail'");
+
+    if (!$result) {
+        echo "Select error on table ($user_table)!";
+    }
+    while ($row = mysqli_fetch_row($result)) {
+        foreach ($row as $key => $value) {
+            $user_info[$key] = $value;
+        }
+    }
+    if ($user_info[3] !== $passwd) {
+        exit("パスワードが違います");
+    } else {
+        $_SESSION['name'] = $user_info[2];
+        header('Location: mypage.php');
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -57,19 +85,18 @@ $link = mysqli_connect($hostname, $username, $password);
         </div>
     </div>
     <div class="top-wrapper">
-        <form class="container" method="post" action="index.php">
+        <form class="container" method="post" action="login.php">
             <div class="question">ログイン</div>
             <div class="sign-form">
                 <span>メールアドレス</span>
-                <input type="text">
+                <input type="text" name="mail">
             </div>
             <div class="sign-form">
                 <span>パスワード</span>
-                <input type="password">
+                <input type="password" name="passwd">
             </div>
             <div class="button-wrapper">
-                <button class="back">戻る</button>
-                <button class="next" onclick="location.href='establish.php'">次へ</button>
+                <button class="next" type="submit">ログイン</button>
             </div>
         </form>
     </div>
