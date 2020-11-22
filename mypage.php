@@ -5,6 +5,12 @@ if (isset($_SESSION['mail']) and isset($_SESSION['passwd']) and isset($_SESSION[
     $passwd = $_SESSION['passwd'];
     $name = $_SESSION['name'];
 }
+if (isset($_POST['logout'])) {
+    $_SESSION['is_login'] = false;
+    $_SESSION['user_id'] = null;
+    $_SESSION['user_id'] = null;
+    header('Location: index.php');
+}
 
 ?>
 <!DOCTYPE html>
@@ -24,12 +30,14 @@ if (isset($_SESSION['mail']) and isset($_SESSION['passwd']) and isset($_SESSION[
         <div class="header-r">
             <div class="header-contents">About</div>
             <div class="header-contents">Contact</div>
-            <a href="signup.php" class="header-contents">
-                Signup
-            </a>
-            <a href="login.php" class="header-contents-button">
-                Login
-            </a>
+            <?php
+            if ($_SESSION['is_login']) {
+                echo '<a href="mypage.php" class="header-contents-button">My Page</a>';
+            } else {
+                echo '<a href="signup.php" class="header-contents">Signup</a>';
+                echo '<a href="login.php" class="header-contents-button">Login</a>';
+            }
+            ?>
         </div>
     </div>
     <div class="header-min">
@@ -55,13 +63,16 @@ if (isset($_SESSION['mail']) and isset($_SESSION['passwd']) and isset($_SESSION[
         </div>
     </div>
     <div class="top-wrapper">
-        <div class="container">
+        <form class="container" method="post" action="mypage.php">
             <div class="name">ようこそ</div>
             <?php
             echo "$name";
             echo "さん";
             ?>
-        </div>
+            <div class="button-wrapper">
+                <button class="back" type="submit" name="logout">ログアウト</button>
+            </div>
+        </form>
     </div>
     </div>
 </body>

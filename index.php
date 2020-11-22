@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+    if (!isset($_SESSION['is_login'])) {
+        $_SESSION['is_login'] = false;
+    }
     $hostname = '127.0.0.1';
     $username = 'root';
     $password = 'dbpass';
@@ -51,18 +56,16 @@
     <div class="header">
       <div class="header-l">agreez</div>
       <div class="header-r">
-        <div class="header-contents">
-          About
-        </div>
-        <div class="header-contents">
-          Contact
-        </div>
-        <a href="signup.php" class="header-contents">
-          Signup
-        </a>
-        <a href="login.php" class="header-contents-button">
-          Login
-        </a>
+        <div class="header-contents">About</div>
+        <div class="header-contents">Contact</div>
+        <?php
+            if ($_SESSION['is_login']) {
+                echo '<a href="mypage.php" class="header-contents-button">My Page</a>';
+            } else {
+                echo '<a href="signup.php" class="header-contents">Signup</a>';
+                echo '<a href="login.php" class="header-contents-button">Login</a>';
+            }
+            ?>
       </div>
     </div>
     <div class="header-min">

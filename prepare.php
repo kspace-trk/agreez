@@ -1,51 +1,52 @@
 <?php
     session_start();
-    if(isset($_POST['index'])){
+    if (isset($_POST['index'])) {
         $index = $_POST['index'];
-    }else{
+    } else {
         $index = 1;
     }
-    if(isset($_POST['my_company'])){
+    if (isset($_POST['my_company'])) {
         $_SESSION['my_company'] = $_POST['my_company'];
     }
-    if(isset($_POST['your_company'])){
+    if (isset($_POST['your_company'])) {
         $_SESSION['your_company'] = $_POST['your_company'];
     }
-    if(isset($_POST['is_receive']) and $index == 4){
+    if (isset($_POST['is_receive']) and $index == 4) {
         $_SESSION['is_receive'] = $_POST['is_receive'];
         $_SESSION['receiver'] = $_SESSION['my_company'];
         $_SESSION['buyer'] = $_SESSION['your_company'];
-    }else if(!isset($_POST['is_receive']) and $index == 4){
+    } elseif (!isset($_POST['is_receive']) and $index == 4) {
         $_SESSION['is_receive'] = false;
         $_SESSION['buyer'] = $_SESSION['my_company'];
         $_SESSION['receiver'] = $_SESSION['your_company'];
     }
-    if(isset($_POST['is_web']) and $index == 5){
+    if (isset($_POST['is_web']) and $index == 5) {
         $_SESSION['is_web'] = $_POST['is_web'];
         $_SESSION['work_name'] = $_SESSION['is_web'];
-    }else if(!isset($_POST['is_web']) and $index == 5){
+    } elseif (!isset($_POST['is_web']) and $index == 5) {
         $_SESSION['is_web'] = false;
     }
-    if(isset($_POST['is_logo']) and $index == 5){
+    if (isset($_POST['is_logo']) and $index == 5) {
         $_SESSION['is_logo'] = $_POST['is_logo'];
         $_SESSION['work_name'] = $_SESSION['is_logo'];
-    }else if(!isset($_POST['is_logo']) and $index == 5){
+    } elseif (!isset($_POST['is_logo']) and $index == 5) {
         $_SESSION['is_logo'] = false;
     }
-    if(isset($_POST['is_img']) and $index == 5){
+    if (isset($_POST['is_img']) and $index == 5) {
         $_SESSION['is_img'] = $_POST['is_img'];
         $_SESSION['work_name'] = $_SESSION['is_img'];
-    }else if(!isset($_POST['is_img']) and $index == 5){
+    } elseif (!isset($_POST['is_img']) and $index == 5) {
         $_SESSION['is_img'] = false;
     }
-    if(isset($_POST['money'])){
+    if (isset($_POST['money'])) {
         $_SESSION['money'] = $_POST['money'];
     }
-    if(isset($_POST['delivery_date'])){
+    if (isset($_POST['delivery_date'])) {
         $_SESSION['delivery_date'] = $_POST['delivery_date'];
     }
     //自社名入力画面
-    function my_company(){
+    function my_company()
+    {
         echo <<<EOT
         <div class="top-wrapper">
         <form class="container" action="prepare.php" method="post">
@@ -61,7 +62,8 @@
 EOT;
     }
     //相手の会社名入力画面
-    function your_company(){
+    function your_company()
+    {
         echo <<<EOT
         <div class="top-wrapper">
         <form class="container" action="prepare.php" method="post">
@@ -78,7 +80,8 @@ EOT;
 EOT;
     }
     //発注or受注選択画面
-    function is_receive(){
+    function is_receive()
+    {
         echo <<<EOT
         <div class="top-wrapper">
         <form class="container" action="prepare.php" method="post">
@@ -96,7 +99,8 @@ EOT;
 EOT;
     }
     //業務内容入力画面
-    function content($type){
+    function content($type)
+    {
         echo <<<EOT
         <div class="top-wrapper">
         <form class="container" action="prepare.php" method="post">
@@ -115,7 +119,8 @@ EOT;
 EOT;
     }
     //金額入力画面
-    function money($type){
+    function money($type)
+    {
         echo <<<EOT
         <div class="top-wrapper">
         <form class="container" action="prepare.php" method="post">
@@ -132,7 +137,8 @@ EOT;
 EOT;
     }
     //納期入力画面
-    function delivery_date(){
+    function delivery_date()
+    {
         echo <<<EOT
         <div class="top-wrapper">
         <form class="container" action="prepare.php" method="post">
@@ -149,32 +155,25 @@ EOT;
 EOT;
     }
     //コンテンツ出力
-    function echo_contents($index){
-        if($index == 1){
+    function echo_contents($index)
+    {
+        if ($index == 1) {
             my_company();
-        }
-        else if($index == 2){
+        } elseif ($index == 2) {
             your_company();
-        }
-        else if($index == 3){
+        } elseif ($index == 3) {
             is_receive();
-        }
-        else if($index == 4 and $_SESSION['is_receive']){//受託の場合
+        } elseif ($index == 4 and $_SESSION['is_receive']) {//受託の場合
             content("受注");
-        }
-        else if($index == 4 and !$_SESSION['is_receive']){//発注の場合
+        } elseif ($index == 4 and !$_SESSION['is_receive']) {//発注の場合
             content("発注");
-        }
-        else if($index == 5 and $_SESSION['is_receive']){//受託の場合
+        } elseif ($index == 5 and $_SESSION['is_receive']) {//受託の場合
             money("受注");
-        }
-        else if($index == 5 and !$_SESSION['is_receive']){//発注の場合
+        } elseif ($index == 5 and !$_SESSION['is_receive']) {//発注の場合
             money("発注");
-        }
-        else if($index == 6){
+        } elseif ($index == 6) {
             delivery_date();
-        }
-        else if($index == 7){
+        } elseif ($index == 7) {
             header('Location: establish.php');
             exit;
         }
@@ -182,6 +181,7 @@ EOT;
 ?>
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -189,38 +189,45 @@ EOT;
     <link rel="stylesheet" href="common.css">
     <title>agreez</title>
 </head>
+
 <body>
     <div class="header">
         <a href="index.php" class="header-l">agreez</a>
         <div class="header-r">
             <div class="header-contents">About</div>
             <div class="header-contents">Contact</div>
-            <div class="header-contents">Signup</div>
-            <div class="header-contents-button">Login</div>
+            <?php
+            if ($_SESSION['is_login']) {
+                echo '<a href="mypage.php" class="header-contents-button">My Page</a>';
+            } else {
+                echo '<a href="signup.php" class="header-contents">Signup</a>';
+                echo '<a href="login.php" class="header-contents-button">Login</a>';
+            }
+            ?>
         </div>
     </div>
     <div class="header-min">
-              <div class="header-min-l">agreez</div>
-              <div class="header-min-r">
-                <input id="toggle" type="checkbox" />
-                <label class="hamburger" for="toggle">
-                  <div class="top"></div>
-                  <div class="meat"></div>
-                  <div class="bottom"></div>
-                </label>
-                <div class="nav">
-                  <div class="nav-wrapper">
+        <div class="header-min-l">agreez</div>
+        <div class="header-min-r">
+            <input id="toggle" type="checkbox" />
+            <label class="hamburger" for="toggle">
+                <div class="top"></div>
+                <div class="meat"></div>
+                <div class="bottom"></div>
+            </label>
+            <div class="nav">
+                <div class="nav-wrapper">
                     <nav>
-                      <a href="#">agreez</a>
-                      <a href="#">About</a>
-                      <a href="#">Contact</a>
-                      <a href="#">Signup</a>
-                      <a href="#">Signin</a>
+                        <a href="#">agreez</a>
+                        <a href="#">About</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Signup</a>
+                        <a href="#">Signin</a>
                     </nav>
-                  </div>
                 </div>
             </div>
-          </div>
+        </div>
+    </div>
     <?php
        echo_contents($index);
     ?>
@@ -268,4 +275,5 @@ EOT;
     </div>
     !---------日付選択用--------->
 </body>
+
 </html>

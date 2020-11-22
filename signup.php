@@ -34,6 +34,7 @@ if (isset($_POST['mail']) and isset($_POST['passwd']) and isset($_POST['name']))
         }
     }
     $_SESSION['user_id'] = $user_info[0];
+    $_SESSION['is_login'] = true;
 
     header('Location: mypage.php');
 }
@@ -55,12 +56,14 @@ if (isset($_POST['mail']) and isset($_POST['passwd']) and isset($_POST['name']))
         <div class="header-r">
             <div class="header-contents">About</div>
             <div class="header-contents">Contact</div>
-            <a href="signup.php" class="header-contents">
-                Signup
-            </a>
-            <a href="login.php" class="header-contents-button">
-                Login
-            </a>
+            <?php
+            if ($_SESSION['is_login']) {
+                echo '<a href="mypage.php" class="header-contents-button">My Page</a>';
+            } else {
+                echo '<a href="signup.php" class="header-contents">Signup</a>';
+                echo '<a href="login.php" class="header-contents-button">Login</a>';
+            }
+            ?>
         </div>
     </div>
     <div class="header-min">
@@ -90,18 +93,18 @@ if (isset($_POST['mail']) and isset($_POST['passwd']) and isset($_POST['name']))
             <div class="question">新規登録</div>
             <div class="sign-form">
                 <span>ユーザー名</span>
-                <input type="text" name="name">
+                <input type="text" name="name" required>
             </div>
             <div class="sign-form">
                 <span>メールアドレス</span>
-                <input type="text" name="mail">
+                <input type="text" name="mail" required>
             </div>
             <div class="sign-form">
                 <span>パスワード</span>
-                <input type="password" name="passwd">
+                <input type="password" name="passwd" required>
             </div>
             <div class="button-wrapper">
-                <button class="back" type="submit">新規登録</button>
+                <button class="next" type="submit">新規登録</button>
             </div>
         </form>
     </div>

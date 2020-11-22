@@ -5,7 +5,7 @@
     $work_name = $_SESSION['work_name'];
     $money = $_SESSION['money'];
     $delivery_date = new DateTime($_SESSION['delivery_date']);
-    $delivery_date = $delivery_date->format('Y年m月d日');
+    $delivery_date_formatted = $delivery_date->format('Y年m月d日');
     if ($_SESSION['work_name'] == "Webサイト制作") {
         $work_def = "甲により提示された仕様に従い、甲から提供されるテキスト原稿、画像等のスクリプトデータと、乙の提供するレイアウトデータおよび画像データ、スクリプト等と組み合わせることを「Webサイト制作」という。";
     } elseif ($_SESSION['work_name'] == "ロゴ画像制作") {
@@ -13,6 +13,32 @@
     } elseif ($_SESSION['work_name'] == "イラスト画像制作") {
         $work_def = "甲により提示された仕様に従い、甲から提供されるイメージ画像を元に制作したイラスト画像の制作を「イラスト画像制作」という。";
     }
+    //ここから保存処理
+    if ($_SESSION['is_login']) {
+        if (isset($_POST['save_agreement'])) {
+            $hostname = '127.0.0.1';
+            $username = 'root';
+            $password = 'dbpass';
+            $dbname = 'agreez';
+            $user_table = 'users';
+            $agreements_table = 'agreements';
+            $delivery_date = $_SESSION['delivery_date'];
+            $user_id = (int)$_SESSION['user_id'];
+            $link = mysqli_connect($hostname, $username, $password);
+            if (!$link) {
+                exit("Connect error!");
+            }
+            $result = mysqli_query($link, "USE $dbname");
+
+            $result = mysqli_query($link, "INSERT INTO $agreements_table SET user_id='$user_id', buyer='$buyer', receiver='$receiver', work_name='$work_name', money='$money', delivery_date='$delivery_date'");
+            if (!$result) {
+                exit("INSERT error!");
+            }
+        }
+    } else {
+        header('Location: login.php');
+    }
+    //ここまで保存処理
     //////////////////////ここから契約書文章
     //前文
     function preamble($buyer, $receiver, $work_name)
@@ -36,18 +62,18 @@
         echo $work_def;
     }
     //第３条 制作期間
-    function delivery_date($delivery_date)
+    function delivery_date($delivery_date_formatted)
     {
         echo "第３条 制作期間";
         echo "<br>";
         echo "<ol>";
-        echo "<li>乙は、本件業務を $delivery_date までに完成し、本件成果物を甲に提出する。</li>";
+        echo "<li>乙は、本件業務を $delivery_date_formatted までに完成し、本件成果物を甲に提出する。</li>";
         echo "<li>乙は前項に定める期日までに本件業務を完成することができないおそれが生じたときは、ただちにその旨を甲に通知し、甲の指示に従う。</li>";
         echo "<li>本契約の締結後、甲からの指示により委託内容に変更があり、その変更により納期を遵守できないおそれが生じた場合は、第1項の完成期日は無効とし、甲乙で協議し、改めて完成期日を定める。</li>";
         echo "</ol>";
     }
     //第４条 納品
-    function delivery($delivery_date)
+    function delivery($delivery_date_formatted)
     {
         echo "第４条 納品";
         echo "<br>";
@@ -127,8 +153,14 @@
     <div class="header-r">
       <div class="header-contents">About</div>
       <div class="header-contents">Contact</div>
-      <div class="header-contents">Signup</div>
-      <div class="header-contents-button">Login</div>
+      <?php
+            if ($_SESSION['is_login']) {
+                echo '<a href="mypage.php" class="header-contents-button">My Page</a>';
+            } else {
+                echo '<a href="signup.php" class="header-contents">Signup</a>';
+                echo '<a href="login.php" class="header-contents-button">Login</a>';
+            }
+            ?>
     </div>
   </div>
   <div class="header-min">
@@ -168,10 +200,10 @@
                 work_def($work_def);
               echo "</div>";
               echo '<div class="text-span">';
-                delivery_date($delivery_date);
+                delivery_date($delivery_date_formatted);
               echo "</div>";
               echo '<div class="text-span">';
-                delivery($delivery_date);
+                delivery($delivery_date_formatted);
               echo "</div>";
               echo '<div class="text-span">';
                 money($money);
@@ -191,9 +223,9 @@
               ?>
       </div>
     </div>
-    <div class="button-wrapper">
-      <button class="save">保存する</button>
-    </div>
+    <form class="button-wrapper" method="post" action="establish.php">
+      <button class="save" type="submit" name="save_agreement">保存する</button>
+    </form>
   </div>
 </body>
 

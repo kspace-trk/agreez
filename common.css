@@ -105,6 +105,11 @@ ol {
   color: #909090;
   margin-bottom: 60px;
 }
+.sign-form span {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 1rem;
+}
 .input-form input {
   width: 100%;
   height: 4rem;
@@ -117,6 +122,20 @@ ol {
   text-align: center;
 }
 .input-form input:focus {
+  border: 2px solid #5e9cff;
+  outline: none;
+}
+.sign-form input {
+  width: 100%;
+  height: 4rem;
+  border-radius: 20px;
+  border: 2px solid #dce5f2;
+  filter: drop-shadow(0 1px 2px #40404034);
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  margin-right: 1rem;
+}
+.sign-form input:focus {
   border: 2px solid #5e9cff;
   outline: none;
 }
