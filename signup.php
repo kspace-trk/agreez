@@ -1,3 +1,28 @@
+<?php
+//データベース追加処理
+$hostname = '127.0.0.1';
+$username = 'root';
+$password = 'dbpass';
+$dbname = 'agreez';
+$user_table = 'users';
+$agreements_table = 'agreements';
+$link = mysqli_connect($hostname, $username, $password);
+    if (!$link) {
+        exit("Connect error!");
+    }
+    $result = mysqli_query($link, "USE $dbname");
+
+if (isset($_POST['mail']) and isset($_POST['passwd']) and isset($_POST['name'])) {
+    $mail = $_POST['mail'];
+    $passwd = $_POST['passwd'];
+    $name = $_POST['name'];
+    $result = mysqli_query($link, "INSERT INTO $user_table SET user_name='$name', user_mail='$mail', user_password='$passwd'");
+    if (!$result) {
+        exit("INSERT error!(メアドもうあるかも)");
+    }
+    header('Location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -46,21 +71,24 @@
         </div>
     </div>
     <div class="top-wrapper">
-        <div class="container">
+        <form class="container" method="post" action="signup.php">
             <div class="question">新規登録</div>
             <div class="sign-form">
+                <span>ユーザー名</span>
+                <input type="text" name="name">
+            </div>
+            <div class="sign-form">
                 <span>メールアドレス</span>
-                <input type="text">
+                <input type="text" name="mail">
             </div>
             <div class="sign-form">
                 <span>パスワード</span>
-                <input type="password">
+                <input type="password" name="passwd">
             </div>
             <div class="button-wrapper">
-                <button class="back">戻る</button>
-                <button class="next" onclick="location.href='establish.php'">次へ</button>
+                <button class="back" type="submit">新規登録</button>
             </div>
-        </div>
+        </form>
     </div>
 </body>
 

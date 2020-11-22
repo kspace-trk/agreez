@@ -1,12 +1,10 @@
 <?php
-//データベース追加処理
-$hostname = '127.0.0.1';
-$username = 'root';
-$password = 'dbpass';
-$dbname = 'agreez';
-$user_table = 'users';
-$agreements_table = 'agreements';
-$link = mysqli_connect($hostname, $username, $password);
+if (isset($_POST['mail']) and isset($_POST['passwd']) and isset($_POST['name'])) {
+    $mail = $_POST['mail'];
+    $passwd = $_POST['passwd'];
+    $name = $_POST['name'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -56,21 +54,14 @@ $link = mysqli_connect($hostname, $username, $password);
         </div>
     </div>
     <div class="top-wrapper">
-        <form class="container" method="post" action="index.php">
-            <div class="question">ログイン</div>
-            <div class="sign-form">
-                <span>メールアドレス</span>
-                <input type="text">
-            </div>
-            <div class="sign-form">
-                <span>パスワード</span>
-                <input type="password">
-            </div>
-            <div class="button-wrapper">
-                <button class="back">戻る</button>
-                <button class="next" onclick="location.href='establish.php'">次へ</button>
-            </div>
-        </form>
+        <div class="container">
+            <div class="name">ようこそ</div>
+            <?php
+            echo $user_name;
+            echo "さん";
+            ?>
+        </div>
+    </div>
     </div>
 </body>
 
