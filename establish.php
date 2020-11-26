@@ -34,9 +34,8 @@
             if (!$result) {
                 exit("INSERT error!");
             }
+            header('Location: mypage.php');
         }
-    } else {
-        header('Location: login.php');
     }
     //ここまで保存処理
     //////////////////////ここから契約書文章

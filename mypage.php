@@ -1,8 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['mail']) and isset($_SESSION['passwd']) and isset($_SESSION['name'])) {
-    $mail = $_SESSION['mail'];
-    $passwd = $_SESSION['passwd'];
+if (isset($_SESSION['is_login'])) {
     $name = $_SESSION['name'];
 }
 if (isset($_POST['logout'])) {
@@ -66,8 +64,8 @@ if (isset($_POST['logout'])) {
         <form class="container" method="post" action="mypage.php">
             <div class="name">ようこそ</div>
             <?php
-            echo "$name";
-            echo "さん";
+                echo "$name";
+                echo "さん";
             ?>
             <div class="button-wrapper">
                 <button class="back" type="submit" name="logout">ログアウト</button>
