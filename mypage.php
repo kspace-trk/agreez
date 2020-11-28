@@ -9,40 +9,7 @@ if (isset($_POST['logout'])) {
     $_SESSION['user_id'] = null;
     header('Location: index.php');
 }
-if (isset($_POST['view_agreement'])) {
-    $id = $_POST['view_agreement'];
-    echo $id;
-    //データベース接続
-    $hostname = '127.0.0.1';
-    $username = 'root';
-    $password = 'dbpass';
-    $dbname = 'agreez';
-    $user_table = 'users';
-    $agreements_table = 'agreements';
-    $user_id = $_SESSION['user_id'];
-    $link = mysqli_connect($hostname, $username, $password);
-    if (!$link) {
-        exit("Connect error!");
-    }
-    $result = mysqli_query($link, "USE $dbname");
 
-    $result = mysqli_query($link, "SELECT * FROM $agreements_table WHERE id = '$id'");
-    if (!$result) {
-        echo "Select error on table ($user_table)!";
-    }
-    while ($row = mysqli_fetch_row($result)) {
-        foreach ($row as $key => $value) {
-            $agreements_info[$key] = $value;
-        }
-    }
-
-    $_SESSION['buyer'] = $agreements_info[2];
-    $_SESSION['receiver'] = $agreements_info[3];
-    $_SESSION['work_name'] = $agreements_info[4];
-    $_SESSION['money'] = $agreements_info[5];
-    $_SESSION['delivery_date'] = $agreements_info[6];
-    //header('Location: establish.php');
-}
 
 function get_agreement()
 {
@@ -70,10 +37,10 @@ function get_agreement()
             $agreements_info[$key] = $value;
         }
         //$agreements_id[$n] = $agreements_info[0];
-        echo '<input type="" name="view_agreement" value="' . $agreements_info[0] . '">';
-        echo '<button class="mypage-contents" type="submit">';
+        //echo '<input type="" name="view_agreement" value="' . $agreements_info[0] . '">';
+        echo '<a href="establish.php' . $agreements_info[0] . '" class="mypage-contents" type="submit">';
         echo $agreements_info[4] . " - 業務委託契約書";
-        echo "</button>";
+        echo "</a>";
         //$n += 1;
     }
 }
@@ -130,7 +97,7 @@ function get_agreement()
     </div>
     <div class="top-wrapper">
         <div class="mypage-title">マイページ</div>
-        <form class="mypage-container" method="post" action="mypage.php">
+        <form class="mypage-container" method="post" action="establish.php">
             <div class="user-name">
                 <svg height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg">
                     <path

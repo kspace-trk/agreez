@@ -1,5 +1,43 @@
 <?php
     session_start();
+    $url = rtrim($_SERVER["REQUEST_URI"], '/');
+    $url = substr($url, strrpos($url, '/') + 1);
+
+    if ($url === (int)$url) {
+        $id = $url;
+        echo $url;
+        //データベース接続
+        $hostname = '127.0.0.1';
+        $username = 'root';
+        $password = 'dbpass';
+        $dbname = 'agreez';
+        $user_table = 'users';
+        $agreements_table = 'agreements';
+        $user_id = $_SESSION['user_id'];
+        $link = mysqli_connect($hostname, $username, $password);
+        if (!$link) {
+            exit("Connect error!");
+        }
+        $result = mysqli_query($link, "USE $dbname");
+
+        $result = mysqli_query($link, "SELECT * FROM $agreements_table WHERE id = '$id'");
+        if (!$result) {
+            echo "Select error on table ($user_table)!";
+        }
+        while ($row = mysqli_fetch_row($result)) {
+            foreach ($row as $key => $value) {
+                $agreements_info[$key] = $value;
+            }
+        }
+
+        $_SESSION['buyer'] = $agreements_info[2];
+        $_SESSION['receiver'] = $agreements_info[3];
+        $_SESSION['work_name'] = $agreements_info[4];
+        $_SESSION['money'] = $agreements_info[5];
+        $_SESSION['delivery_date'] = $agreements_info[6];
+        //header('Location: establish.php');
+    }
+
     $buyer = $_SESSION['buyer'];
     $receiver = $_SESSION['receiver'];
     $work_name = $_SESSION['work_name'];
