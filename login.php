@@ -1,6 +1,6 @@
 <?php
 session_start();
-//データベース追加処理
+//ログイン処理
 $hostname = '127.0.0.1';
 $username = 'root';
 $password = 'dbpass';

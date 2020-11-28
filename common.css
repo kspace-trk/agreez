@@ -210,6 +210,56 @@ ol {
   border: 2px solid #909090;
   border-radius: 15px;
 }
+.mypage-title {
+  font-size: 1.5rem;
+  color: #17171b;
+  margin-bottom: 2rem;
+}
+.mypage-container {
+  max-width: 1000px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0 200px 0;
+}
+.user-name {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 45px;
+  margin-bottom: 50px;
+}
+.user-name svg {
+  width: 60px;
+  height: 60px;
+  color: #585d65;
+  margin-left: 50px;
+}
+.user-name span {
+  width: calc(100% - 160px);
+  text-align: center;
+}
+.mypage-subtitle {
+  width: 100%;
+  color: #17171b;
+  margin-bottom: 1rem;
+}
+.mypage-contents {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 38px;
+  background-color: #ffffff;
+  cursor: pointer;
+  margin-bottom: 20px;
+  filter: drop-shadow(0px 1px 4px #4040403e);
+}
 @media screen and (max-width: 920px) {
   .header {
     display: none;
