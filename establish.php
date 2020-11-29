@@ -223,7 +223,13 @@
       </div>
     </div>
     <form class="button-wrapper" method="post" action="establish.php">
-      <button class="save" type="submit" name="save_agreement">保存する</button>
+      <?php
+        if ($_SESSION['is_login']) {
+            echo '<button class="save" type="submit" name="save_agreement">保存する</button>';
+        } else {
+            echo '<button class="save-login" type="submit" name="save_agreement">保存するにはログインしてください</button>';
+        }
+      ?>
     </form>
   </div>
 </body>
