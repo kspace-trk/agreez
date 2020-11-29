@@ -126,14 +126,13 @@ ol {
   outline: none;
 }
 .sign-form input {
-  width: 100%;
+  width: 90%;
   height: 4rem;
   border-radius: 20px;
   border: 2px solid #dce5f2;
   filter: drop-shadow(0 1px 2px #40404034);
   padding: 0 1rem;
   font-size: 1.2rem;
-  margin-right: 1rem;
 }
 .sign-form input:focus {
   border: 2px solid #5e9cff;
@@ -264,7 +263,15 @@ ol {
   filter: drop-shadow(0px 1px 4px #4040403e);
 }
 .warning {
+  display: flex;
+  justify-content: center;
   color: #f75243;
+}
+.warning p {
+  max-width: 750px;
+  width: 90%;
+  color: #f75243;
+  text-align: center;
 }
 @media screen and (max-width: 920px) {
   .header {

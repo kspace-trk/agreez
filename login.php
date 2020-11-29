@@ -32,6 +32,7 @@ if (isset($_POST['mail']) and isset($_POST['passwd'])) {
         }
     }
     if (!isset($user_info[3])) {
+        $pass_unmatch = true;
     } elseif (password_verify($passwd, $user_info[3])) {
         $_SESSION['user_id'] = $user_info[0];
         $_SESSION['name'] = $user_info[1];
@@ -109,10 +110,10 @@ if (isset($_POST['mail']) and isset($_POST['passwd'])) {
             </div>
             <div class="warning">
                 <?php
-                if (!isset($user_info[3]) or $pass_unmatch) {
-                    echo_warning("ユーザー名またはパスワードが違います");
-                }
-            ?>
+                    if ($pass_unmatch) {
+                        echo_warning("ユーザー名またはパスワードが違います");
+                    }
+                ?>
             </div>
         </form>
     </div>

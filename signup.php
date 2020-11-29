@@ -8,6 +8,8 @@ $password = 'dbpass';
 $dbname = 'agreez';
 $user_table = 'users';
 $agreements_table = 'agreements';
+$pass_unmatch = false;
+
 $link = mysqli_connect($hostname, $username, $password);
     if (!$link) {
         exit("Connect error!");
@@ -21,7 +23,7 @@ if (isset($_POST['mail']) and isset($_POST['passwd']) and isset($_POST['name']))
     $_SESSION['name'] = $name;
     $result = mysqli_query($link, "INSERT INTO $user_table SET user_name='$name', user_mail='$mail', user_password='$passwd'");
     if (!$result) {
-        exit("INSERT error!(メアドもうあるかも)");
+        $pass_unmatch = true;
     }
     $result = mysqli_query($link, "SELECT * FROM $user_table WHERE user_mail = '$mail'");
 
@@ -96,14 +98,22 @@ if (isset($_POST['mail']) and isset($_POST['passwd']) and isset($_POST['name']))
             </div>
             <div class="sign-form">
                 <span>メールアドレス</span>
-                <input type="text" name="mail" required>
+                <input type="email" name="mail" required>
             </div>
             <div class="sign-form">
                 <span>パスワード</span>
-                <input type="password" name="passwd" required>
+                <input type="password" minlength="8" name="passwd" required>
             </div>
             <div class="button-wrapper">
                 <button class="next" type="submit">新規登録</button>
+            </div>
+            <div class="warning">
+                <?php
+                    if ($pass_unmatch) {
+                        echo_warning("存在するメールアドレスです");
+                    }
+                ?>
+                <p>ログイン機能不完全なので、適当なメールアドレスとパスワードを入力しておいてください。(一応ハッシュ化はしています)</p>
             </div>
         </form>
     </div>
