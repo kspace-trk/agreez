@@ -140,9 +140,9 @@ function get_agreement()
             <?php
                 get_agreement();
             ?>
-            <div class="button-wrapper">
+            <form class="button-wrapper" method="post" action="mypage.php">
                 <button class="back" type="submit" name="logout">ログアウト</button>
-            </div>
+            </form>
         </div>
     </div>
     </div>

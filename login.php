@@ -1,5 +1,9 @@
 <?php
 session_start();
+function echo_warning($message)
+{
+    echo $message;
+}
 //ログイン処理
 $hostname = '127.0.0.1';
 $username = 'root';
@@ -26,8 +30,7 @@ if (isset($_POST['mail']) and isset($_POST['passwd'])) {
             $user_info[$key] = $value;
         }
     }
-    if ($user_info[3] !== $passwd) {
-        exit("パスワードが違います");
+    if (!isset($user_info[3])) {
     } else {
         $_SESSION['user_id'] = $user_info[0];
         $_SESSION['name'] = $user_info[1];
@@ -100,6 +103,13 @@ if (isset($_POST['mail']) and isset($_POST['passwd'])) {
             </div>
             <div class="button-wrapper">
                 <button class="next" type="submit">ログイン</button>
+            </div>
+            <div class="warning">
+                <?php
+                if (!isset($user_info[3])) {
+                    echo_warning("ユーザー名またはパスワードが違います");
+                }
+            ?>
             </div>
         </form>
     </div>

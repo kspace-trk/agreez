@@ -263,6 +263,9 @@ ol {
   margin-bottom: 20px;
   filter: drop-shadow(0px 1px 4px #4040403e);
 }
+.warning {
+  color: #f75243;
+}
 @media screen and (max-width: 920px) {
   .header {
     display: none;
