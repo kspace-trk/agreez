@@ -1,3 +1,6 @@
+body {
+  background-color: #dce5f2;
+}
 .main-visual {
   width: 100%;
   display: flex;
@@ -100,6 +103,155 @@
   width: 700px;
   height: auto;
 }
+/*---------about---------*/
+#about {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 300px);
+  gap: 25px;
+  margin-top: 400px;
+}
+.about-contents {
+  width: 100%;
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 50px;
+  filter: drop-shadow(0px 1px 4px #40404030);
+}
+.about-contents svg {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+}
+.card-title {
+  font-size: 1.2rem;
+  color: #585d65;
+}
+.card-text {
+  max-width: 250px;
+  width: 90%;
+  color: #90969f;
+  text-align: center;
+}
+/*---------about---------*/
+/*-----------contact------------*/
+#contact {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.contact-contents {
+  max-width: 1000px;
+  width: 80%;
+  margin: 80px 0;
+}
+.result-contact-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.form-contents {
+  display: flex;
+  padding: 15px 0;
+}
+.form-contents p {
+  width: 35%;
+  font-size: 1rem;
+  color: #17171b;
+  line-height: 3rem;
+}
+input {
+  width: 65%;
+  height: 3rem;
+  font-family: "Noto Sans JP";
+  font-size: 1rem;
+  color: #17171b;
+  border: solid 1px #9696aa;
+  border-radius: 5px;
+  padding: 0 0.5rem;
+}
+.form-contents input::placeholder {
+  color: #9696aa;
+}
+.form-contents input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #4e86de;
+}
+textarea {
+  width: 65%;
+  height: 20rem;
+  font-family: "Noto Sans JP";
+  font-size: 1rem;
+  color: #17171b;
+  border: solid 1px #9696aa;
+  border-radius: 5px;
+  resize: none;
+  padding: 0.25rem 0.5rem 0;
+}
+textarea::placeholder {
+  color: #9696aa;
+}
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #4e86de;
+}
+@media screen and (max-width: 896px) {
+  .form-contents {
+    flex-direction: column;
+    padding: 5px 0;
+  }
+  .form-contents p {
+    width: 100%;
+  }
+  .form-contents textarea {
+    width: 100%;
+  }
+  .form-contents input {
+    width: 100%;
+  }
+}
+.contact-btn button {
+  max-width: 500px;
+  width: 100%;
+  height: 75px;
+  margin: 50px auto 0;
+  background-color: #4e86de;
+  display: grid;
+  place-items: center;
+  border-radius: 38px;
+}
+.contact-btn button:hover {
+  max-width: 500px;
+  width: 100%;
+  height: 75px;
+  margin-top: 50px;
+  background-color: #ffffff;
+  border: 4px solid #4e86de;
+  display: grid;
+  place-items: center;
+}
+.contact-btn p {
+  color: #ffffff;
+  font-weight: 700;
+}
+.contact-btn button:hover p {
+  color: #4e86de;
+  font-weight: 700;
+}
+p {
+  margin: 0;
+}
+/*-------------contact-------------*/
+@media screen and (max-width: 1500px) {
+  #about {
+    margin-top: 150px;
+  }
+}
 @media screen and (max-width: 1200px) {
   .main-visual-img {
     width: 100%;
@@ -141,6 +293,9 @@
   .main-contents-r img {
     width: 100%;
     height: auto;
+  }
+  #about {
+    margin-top: 100px;
   }
 }
 /*--ここからハンバーガーメニュー--*/
