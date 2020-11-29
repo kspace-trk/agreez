@@ -27,7 +27,7 @@ session_start();
             echo "USE failed!";
         }
         //テーブル作成
-        $result1 = mysqli_query($link, "CREATE TABLE $user_table (id INT NOT NULL AUTO_INCREMENT, user_name VARCHAR(100)BINARY NOT NULL, user_mail VARCHAR(50)BINARY UNIQUE NOT NULL, user_password VARCHAR(50)BINARY NOT NULL,PRIMARY KEY(id)) CHARACTER SET utf8");
+        $result1 = mysqli_query($link, "CREATE TABLE $user_table (id INT NOT NULL AUTO_INCREMENT, user_name VARCHAR(100)BINARY NOT NULL, user_mail VARCHAR(50)BINARY UNIQUE NOT NULL, user_password VARCHAR(500)BINARY NOT NULL,PRIMARY KEY(id)) CHARACTER SET utf8");
         $result2 = mysqli_query($link, "CREATE TABLE $agreements_table (id INT NOT NULL AUTO_INCREMENT, user_id INT NOT NULL, buyer VARCHAR(100)BINARY NOT NULL, receiver VARCHAR(100)BINARY NOT NULL, work_name VARCHAR(100)BINARY NOT NULL, money VARCHAR(100)BINARY NOT NULL, delivery_date DATE NOT NULL,PRIMARY KEY(id)) CHARACTER SET utf8");
 
         if (!$result1) {

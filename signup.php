@@ -16,7 +16,7 @@ $link = mysqli_connect($hostname, $username, $password);
 
 if (isset($_POST['mail']) and isset($_POST['passwd']) and isset($_POST['name'])) {
     $mail = $_POST['mail'];
-    $passwd = $_POST['passwd'];
+    $passwd = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
     $name = $_POST['name'];
     $_SESSION['name'] = $name;
     $result = mysqli_query($link, "INSERT INTO $user_table SET user_name='$name', user_mail='$mail', user_password='$passwd'");
@@ -35,7 +35,6 @@ if (isset($_POST['mail']) and isset($_POST['passwd']) and isset($_POST['name']))
     }
     $_SESSION['user_id'] = $user_info[0];
     $_SESSION['is_login'] = true;
-
     header('Location: mypage.php');
 }
 ?>

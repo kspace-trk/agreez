@@ -11,6 +11,7 @@ $password = 'dbpass';
 $dbname = 'agreez';
 $user_table = 'users';
 $agreements_table = 'agreements';
+$pass_unmatch = false;
 $link = mysqli_connect($hostname, $username, $password);
     if (!$link) {
         exit("Connect error!");
@@ -31,12 +32,14 @@ if (isset($_POST['mail']) and isset($_POST['passwd'])) {
         }
     }
     if (!isset($user_info[3])) {
-    } else {
+    } elseif (password_verify($passwd, $user_info[3])) {
         $_SESSION['user_id'] = $user_info[0];
         $_SESSION['name'] = $user_info[1];
         $_SESSION['is_login'] = true;
 
         header('Location: mypage.php');
+    } else {
+        $pass_unmatch = true;
     }
 }
 
@@ -106,7 +109,7 @@ if (isset($_POST['mail']) and isset($_POST['passwd'])) {
             </div>
             <div class="warning">
                 <?php
-                if (!isset($user_info[3])) {
+                if (!isset($user_info[3]) or $pass_unmatch) {
                     echo_warning("ユーザー名またはパスワードが違います");
                 }
             ?>
