@@ -4,7 +4,7 @@ session_start();
     if (!isset($_SESSION['is_login'])) {
         $_SESSION['is_login'] = false;
     }
-    $hostname = 'ba59e9cfcfa3b5';
+    $hostname = 'us-cdbr-east-02.cleardb.com';
     $username = 'ba59e9cfcfa3b5';
     $password = '84988615';
     $dbname = 'agreez';

@@ -5,7 +5,7 @@ function echo_warning($message)
     echo $message;
 }
 //ログイン処理
-$hostname = 'ba59e9cfcfa3b5';
+$hostname = 'us-cdbr-east-02.cleardb.com';
 $username = 'ba59e9cfcfa3b5';
 $password = '84988615';
 $dbname = 'agreez';

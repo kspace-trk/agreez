@@ -46,7 +46,8 @@ if (isset($_POST['view_agreement'])) {
 function get_agreement()
 {
     //データベース接続
-    $hostname = 'ba59e9cfcfa3b5';
+    $hostname = 'us-cdbr-east-02.cleardb.com';
+
     $username = 'ba59e9cfcfa3b5';
     $password = '84988615';
     $dbname = 'agreez';
